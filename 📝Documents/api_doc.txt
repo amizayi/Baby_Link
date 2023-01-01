@@ -1,0 +1,12 @@
+main_url = http://localhost:8000/api/(version)
+----------------------------------------------
+
+****************** /main_url/base ******************
+1. list all Type
+- method => get
+- url    => /type
+-----------------
+2. list all Status
+- method => get
+- url    => /status
+----------------- 

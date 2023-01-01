@@ -17,6 +17,6 @@ Route::prefix('/v1')->group(function () {
         // type
         Route::get('/type', [V1TypeController::class, 'index']);
         // status 
-        Route::get('/type', [V1TStatusController::class, 'index']);
+        Route::get('/status', [V1TStatusController::class, 'index']);
     });
 });
