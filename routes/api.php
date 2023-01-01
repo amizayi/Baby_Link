@@ -1,19 +1,22 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\V1\Base\StatusController as V1TStatusController;
+use App\Http\Controllers\V1\Base\TypeController as V1TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// V1
+Route::prefix('/v1')->group(function () {
+    // Base
+    Route::prefix('/base')->group(function () {
+        // type
+        Route::get('/type', [V1TypeController::class, 'index']);
+        // status 
+        Route::get('/type', [V1TStatusController::class, 'index']);
+    });
 });
