@@ -2,7 +2,8 @@
 
 use App\Models\Link;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,8 @@ Route::get('/{code}', function ($code) {
         ->first()?->redirect_url;
     // Does not exist code
     if (!$redirect) return abort(404);
-    // redirect to original url
-    return redirect($redirect);
+    // redirect to original url  
+    if (!Str::startsWith($redirect, ['https://', 'http://']))  $redirect = 'https://' . $redirect;
+
+    return Redirect::away($redirect);
 });
