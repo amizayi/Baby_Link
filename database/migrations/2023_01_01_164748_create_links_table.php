@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('redirect_url');
             $table->foreignId('type_id')->constrained('types');
             $table->foreignId('status_id')->constrained('statuses');
+            $table->tinyInteger('is_active')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
