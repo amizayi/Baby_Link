@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('redirect_url');
             $table->foreignId('type_id')->constrained('types');
             $table->foreignId('status_id')->constrained('statuses');
