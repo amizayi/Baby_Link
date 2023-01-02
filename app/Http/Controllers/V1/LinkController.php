@@ -24,6 +24,7 @@ class LinkController extends ApiController
         $link = Link::create($inputs);
         return $this->successResponse(new LinkResource($link));
     }
+    
     public function show($code)
     {
         //find public code

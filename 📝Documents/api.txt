@@ -3,6 +3,7 @@ main_url = http://localhost:8000/api/(version)
 ####################################################
 
 ****************** /main_url/base ******************
+
 1. list all Type
 - method => get
 - url    => /type
@@ -15,7 +16,7 @@ main_url = http://localhost:8000/api/(version)
             "name": "short-link"
         } 
     ]
------------------
+
 2. list all Status
 - method => get
 - url    => /status 
@@ -28,19 +29,40 @@ main_url = http://localhost:8000/api/(version)
             "name": "public"
         }
     ]
+
 ****************** /main_url/link ******************
-1. show link details
-- method => get
-- url    => /{code}  
-- url arg => code : for fid and redirect to original url
+
+1. store link
+- method    => post
+- url       => /store   
+- req param => [
+    code : string
+    redirect_url: (required) string
+] 
+- response  =>
+   "status": true,
+    "message": null,
+    "result": {
+        "id": 8,
+        "code": "link4",
+        "redirect": "www.websima.ir",
+        "type": "short-link",
+        "status": "public",
+        "created_at": "0 ثانیه پیش"
+    }
+
+2. show link details
+- method   => get
+- url      => /{code}  
+- url arg  => code : for fid and redirect to original url
 - response =>
     "status": true,
     "message": "show link details",
     "result": {
+        "id": 8,
         "code": "github",
         "redirect": "https://github.com/amirrezarzyi",
         "type": "short-link",
         "status": "public",
         "created_at": "5 دقیقه پیش"
     }
------------------
