@@ -9,6 +9,7 @@ class LinkResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'code' => $this->code,
             'redirect' => $this->redirect_url,
             'type' => $this->type?->name,
