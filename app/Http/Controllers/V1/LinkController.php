@@ -2,27 +2,38 @@
 
 namespace App\Http\Controllers\V1;
 
-use App\Http\Controllers\ApiController;
-use App\Http\Requests\Link\LinkRequest;
 use App\Http\Resources\V1\Link\LinkResource;
-use App\Models\Base\Setting;
+use App\Http\Requests\Link\LinkRequest;
+use App\Http\Controllers\ApiController;
+use App\Services\ImageService;
+use Illuminate\Http\Request;
+use App\Models\Base\File;
 use App\Models\Link;
 
 class LinkController extends ApiController
 {
-    public function store(LinkRequest $request)
+    public function shortener(LinkRequest $request)
     {
-        $redirect = $request->redirect_url;
-
-        $link = Link::query()->create([
-            'redirect_url' => $redirect,
-            'code' => $request->code ?? Setting::generateCode(), // generate code with system 
-            'is_active' => 1, // active
-            'status_id' => 1, // public
-            'type_id' => $redirect ? 1 : 2, // link or file 
-        ]);
-        // response
+        $link = Link::createLink($request);
         return $this->successResponse(new LinkResource($link));
+    }
+
+    public function uploader(Request $request)
+    {
+        $reqFile = $request->file;
+        $imageTypes = ['jpg', 'png', 'bmp', 'svg'];
+        // generate shortcut
+        $link = Link::createLink($request, 'file-link');
+        // create record file in database
+        $file = File::createFile($reqFile, $link);
+        // check type file
+        if (in_array($reqFile->extension(), $imageTypes)) {
+            // save image in storage
+            $is_save = ImageService::save($file, $reqFile);
+            if ($is_save) return $this->successResponse(new LinkResource($link), 'image saved');
+            return $this->errorResponse('image is not saved');
+        }
+        return false;
     }
 
     public function show($code)

@@ -22,7 +22,8 @@ Route::prefix('/v1')->group(function () {
     });
     // Link
     Route::prefix('/link')->controller(V1LinkController::class)->group(function () { 
-        Route::post('/store','store');
+        Route::post('/shortener','shortener');
+        Route::post('/uploader','uploader');
         Route::get('/{code}','show');
     });
 });
