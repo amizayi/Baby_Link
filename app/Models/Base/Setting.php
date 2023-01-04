@@ -14,13 +14,16 @@ class Setting extends Model
 
     protected $guarded = ['id'];
 
-    public static function generateCode()
+    public static function generateCode($type)
     {
-        $current = self::where('key', 'code_link')->first();
-        $currentValue = $current->value;
-        $current->update([
-            'value' => (int)++$current->value
-        ]);
-        return 'link' . $currentValue;
+        if ($type === 'link') {
+            $currentLinkCode = self::where('key', 'code_link')->first();
+            $currentLinkCode->update(['value' => (int)++$currentLinkCode->value]);
+            return 'link' . $currentLinkCode->value;
+        } else {
+            $currentFileCode = self::where('key', 'file_link')->first();
+            $currentFileCode->update(['value' => (int)++$currentFileCode->value]);
+            return 'file' . $currentFileCode->value;
+        }
     }
 }

@@ -12,11 +12,15 @@ class SettingSeeder extends Seeder
         $settings = [
             [
                 'key' => 'version',
-                'value' => '1'
+                'value' => '1.0.0'
             ],
             [
                 'key' => 'code_link',
-                'value' => '1'
+                'value' => '0'
+            ],
+            [
+                'key' => 'file_link',
+                'value' => '0'
             ],
         ];
 
