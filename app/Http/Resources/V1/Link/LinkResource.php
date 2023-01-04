@@ -5,16 +5,16 @@ namespace App\Http\Resources\V1\Link;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LinkResource extends JsonResource
-{ 
+{
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id' => $this->id, 
             'code' => $this->code,
             'redirect' => $this->redirect_url,
             'type' => $this->type?->name,
             'status' => $this->status?->name,
-            'created_at' => jdate($this->created_at)->ago(),
+            'created_at' => jdate($this->created_at)->format('Y-m-d H:i'),
         ];
     }
 }
