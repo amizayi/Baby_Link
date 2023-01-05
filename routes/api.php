@@ -27,3 +27,4 @@ Route::prefix('/v1')->group(function () {
         Route::get('/{code}', 'show');
     });
 });
+ 
