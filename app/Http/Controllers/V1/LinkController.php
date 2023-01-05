@@ -5,8 +5,8 @@ namespace App\Http\Controllers\V1;
 use App\Http\Resources\V1\Link\LinkResource;
 use App\Http\Requests\Link\LinkRequest;
 use App\Http\Controllers\ApiController;
-use App\Http\Fava\Services\FileService;
-use App\Http\Services\ImageService;
+use App\Http\Services\Rezix_File\FileService;
+use App\Http\Services\Rezix_File\ImageService;
 use App\Models\Base\File;
 use App\Models\Link;
 
@@ -39,7 +39,7 @@ class LinkController extends ApiController
             return $this->errorResponse('file is not saved');
         }
         return false;
-    }
+    } 
 
     public function show($code)
     {

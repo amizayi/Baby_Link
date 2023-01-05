@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Rezix_File\Services;
+namespace App\Http\Services\Rezix_File;
 
 use App\Http\Traits\FileServiceTool;
 

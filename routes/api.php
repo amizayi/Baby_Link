@@ -21,9 +21,9 @@ Route::prefix('/v1')->group(function () {
         Route::get('/status', [V1TStatusController::class, 'index']);
     });
     // Link
-    Route::prefix('/link')->controller(V1LinkController::class)->group(function () { 
-        Route::post('/shortener','shortener');
-        Route::post('/uploader','uploader');
-        Route::get('/{code}','show');
+    Route::prefix('/link')->controller(V1LinkController::class)->group(function () {
+        Route::post('/shortener', 'shortener');
+        Route::post('/uploader', 'uploader');
+        Route::get('/{code}', 'show');
     });
 });

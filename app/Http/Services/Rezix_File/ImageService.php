@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Services\Rezix_File;
 
 use App\Http\Rezix_File\Services\FileTools;
 use Intervention\Image\ImageManagerStatic as Image;
