@@ -1,6 +1,7 @@
-### User ###
-### Link ###
-### Status ####
-### Type ####
-### Log Activity ### 
-### Setting ###
+### User ### ❌
+### Link ### ✔
+### File ### ✔
+### Status #### ✔
+### Type #### ✔
+### Log Activity ### ❌
+### Setting ### ✔
