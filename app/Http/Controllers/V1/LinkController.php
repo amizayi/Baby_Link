@@ -5,7 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Resources\V1\Link\LinkResource;
 use App\Http\Requests\Link\LinkRequest;
 use App\Http\Controllers\ApiController;
-use App\Http\Services\FileService;
+use App\Http\Fava\Services\FileService;
 use App\Http\Services\ImageService;
 use App\Models\Base\File;
 use App\Models\Link;

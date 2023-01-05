@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Storage;
 
-class FileServiceTools
+trait FileServiceTool
 {
     public static function getPath($file)
     {
@@ -25,4 +25,4 @@ class FileServiceTools
     {
         return Storage::disk('public');
     }
-} 
+}

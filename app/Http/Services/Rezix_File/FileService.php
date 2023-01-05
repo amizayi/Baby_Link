@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Http\Rezix_File\Services;
 
 
-class FileService extends FileServiceTools
+class FileService extends FileTools
 {
     public static function save($file, $reqFile)
     {

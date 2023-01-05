@@ -2,9 +2,10 @@
 
 namespace App\Http\Services;
 
+use App\Http\Rezix_File\Services\FileTools;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class ImageService extends FileServiceTools
+class ImageService extends FileTools
 {
     public static function save($file, $reqFile)
     {
