@@ -9,13 +9,14 @@ use App\Services\ImageService;
 use Illuminate\Http\Request;
 use App\Models\Base\File;
 use App\Models\Link;
+use App\Services\FileService;
 
 class LinkController extends ApiController
 {
     public function shortener(LinkRequest $request)
     {
         $link = Link::createLink($request);
-        return $this->successResponse(new LinkResource($link));
+        return $this->successResponse(new LinkResource($link), 'link shorted');
     }
 
     public function uploader(Request $request)
@@ -32,6 +33,11 @@ class LinkController extends ApiController
             $is_save = ImageService::save($file, $reqFile);
             if ($is_save) return $this->successResponse(new LinkResource($link), 'image saved');
             return $this->errorResponse('image is not saved');
+        } else {
+            // save file in storage
+            $is_file = FileService::save($file, $reqFile);
+            if ($is_file) return $this->successResponse(new LinkResource($link), 'file saved');
+            return $this->errorResponse('file is not saved');
         }
         return false;
     }

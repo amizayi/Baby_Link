@@ -32,9 +32,9 @@ main_url = http://localhost:8000/api/(version)
 
 ****************** /main_url/link ******************
 
-1. store link
+1. shorter link
 - method    => post
-- url       => /store   
+- url       => /shortener   
 - req param => [
     code : string
     redirect_url: (required) string
@@ -65,4 +65,23 @@ main_url = http://localhost:8000/api/(version)
         "type": "short-link",
         "status": "public",
         "created_at": "5 دقیقه پیش"
+    }
+
+3. uploader file
+- method    => post
+- url       => /uploader   
+- req param => [
+    code : string
+    file: (required) file
+] 
+- response  =>
+   "status": true,
+    "message": null,
+    "result": {
+        "id": 8,
+        "code": "link4",
+        "redirect": "www.websima.ir",
+        "type": "short-link",
+        "status": "public",
+        "created_at": "0 ثانیه پیش"
     }

@@ -25,4 +25,4 @@ class FileServiceTools
     {
         return Storage::disk('public');
     }
-}
+} 
