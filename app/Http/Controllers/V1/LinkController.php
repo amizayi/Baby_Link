@@ -6,14 +6,14 @@ use App\Http\Resources\V1\Link\LinkResource;
 use App\Http\Requests\Link\LinkRequest;
 use App\Http\Controllers\ApiController;
 use App\Http\Services\FileService;
-use App\Services\ImageService;
+use App\Http\Services\ImageService;
 use App\Models\Base\File;
 use App\Models\Link;
 
 class LinkController extends ApiController
 {
     public function shortener(LinkRequest $request)
-    {
+    { 
         $link = Link::createLink($request);
         return $this->successResponse(new LinkResource($link), 'link shorted');
     }

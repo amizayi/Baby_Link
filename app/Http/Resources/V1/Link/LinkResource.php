@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\V1\Link;
 
-use App\Services\FileServiceTools;
+use App\Http\Services\FileServiceTools;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 

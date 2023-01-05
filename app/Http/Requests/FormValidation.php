@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Traits\ApiResponse;
+use App\Http\Traits\ApiResponse;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FormValidation extends FormRequest
