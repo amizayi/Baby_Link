@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Traits\FileServiceTool;
 use App\Models\Base\File;
 use App\Models\Base\Setting;
 use App\Models\Base\Status;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, FileServiceTool;
 
     protected $table = 'links';
 
@@ -23,7 +24,7 @@ class Link extends Model
         return $this->morphMany(File::class, 'fileable');
     }
     
-    public static function createLink($request, $type = 'link')
+    public static function createLink($request, $type = 'link',$file = null)
     {
         return self::query()->create([
             'redirect_url' => $request->redirect_url ?? null,

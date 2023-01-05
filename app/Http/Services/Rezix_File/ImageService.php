@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\Rezix_File;
 
-use App\Http\Rezix_File\Services\FileTools;
+use App\Http\Services\Rezix_File\FileTools;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageService extends FileTools

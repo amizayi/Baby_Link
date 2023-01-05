@@ -8,12 +8,17 @@ trait FileServiceTool
 {
     public static function getPath($file)
     {
-        return str_replace("-", DIRECTORY_SEPARATOR, $file->date);  
+        return str_replace("-", DIRECTORY_SEPARATOR, $file->date);
     }
 
     public static function getFullPath($file)
     {
-        return self::getPath($file) . DIRECTORY_SEPARATOR . $file->name; 
+        return self::getPath($file) . DIRECTORY_SEPARATOR . $file->name;
+    }
+
+    public static function getStorageFullPath($file)
+    {
+        return 'storage' . DIRECTORY_SEPARATOR . self::getPath($file) . DIRECTORY_SEPARATOR . $file->name;
     }
 
     public static function makeDirectories($storage, $path)
