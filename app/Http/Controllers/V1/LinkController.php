@@ -19,7 +19,7 @@ class LinkController extends ApiController
         return $this->successResponse(new LinkResource($link), 'link shorted');
     }
 
-    public function uploader(Request $request)
+    public function uploader(LinkRequest $request)
     {
         $reqFile = $request->file;
         $imageTypes = ['jpg', 'png', 'bmp', 'svg'];

@@ -75,13 +75,13 @@ main_url = http://localhost:8000/api/(version)
     file: (required) file
 ] 
 - response  =>
-   "status": true,
-    "message": null,
+    "status": true,
+    "message": "file saved",
     "result": {
-        "id": 8,
-        "code": "link4",
-        "redirect": "www.websima.ir",
-        "type": "short-link",
+        "id": 72,
+        "code": "file68",
+        "redirect": "/storage/2023\\01\\05\\20230105-091431237082.pdf",
+        "type": "file-link",
         "status": "public",
-        "created_at": "0 ثانیه پیش"
+        "created_at": "1401-10-15 09:14"
     }

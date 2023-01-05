@@ -10,8 +10,9 @@ class LinkRequest extends FormValidation
     public function rules()
     {
         return [
-            'code' => 'nullable|unique:links,code',
-            'redirect_url' => 'required',
+            'code' => 'nullable|unique:links,code', 
+            'redirect_url' => 'required_without:file',
+            'file' => 'required_without:redirect_url',
         ];
     }
 
