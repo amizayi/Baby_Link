@@ -7,13 +7,16 @@ use App\Http\Requests\Link\LinkRequest;
 use App\Http\Controllers\ApiController;
 use App\Http\Services\Rezix_File\FileService;
 use App\Http\Services\Rezix_File\ImageService;
+use App\Http\Services\Rezix_FTP\FTPService;
 use App\Models\Base\File;
 use App\Models\Link;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class LinkController extends ApiController
 {
     public function shortener(LinkRequest $request)
-    { 
+    {
         $link = Link::createLink($request);
         return $this->successResponse(new LinkResource($link), 'link shorted');
     }
@@ -39,7 +42,7 @@ class LinkController extends ApiController
             return $this->errorResponse('file is not saved');
         }
         return false;
-    } 
+    }
 
     public function show($code)
     {
@@ -52,5 +55,14 @@ class LinkController extends ApiController
         if (!$redirect) return $this->errorResponse('not found', 404);
         // redirect to original url
         return $this->successResponse(new LinkResource($redirect), 'show link details');
+    }
+
+    public function testt(Request $request)
+    {
+        $config = Config::get('ftp.connections.connection1');
+        $ftp = new FTPService($config);
+        $fileName =  $request->file->getClientOriginalName();
+        $path = 'test' . DIRECTORY_SEPARATOR . 'image' . DIRECTORY_SEPARATOR . $fileName;
+        return $ftp->uploadFile($request->file, $path);
     }
 }

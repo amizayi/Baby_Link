@@ -20,11 +20,11 @@ return array(
     'connections' => array(
 
         'connection1' => array(
-            'host'   => '192.168.2.1',
+            'host'   => '192.168.2.2',
             'port'  => 40021,
             'username' => 'ftpuser1',
             'password'   => 'Sepehr.2014',
-            'timeout'   => 10,
+            'timeout'   => 5,
             'passive'   => false,
             'secure' => false
         )
