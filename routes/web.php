@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\V1\LinkController;
-use App\Http\Services\Rezix_File\FileService; 
-use App\Models\Link; 
+use App\Http\Services\Rezix_File\FileService;
+use App\Models\Link;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redirect; 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/{code}', function ($code) {
         ->whereStatusId(1)
         ->select('id', 'redirect_url')
         ->first();
-    if (!$link) return abort(404); 
+    if (!$link) return abort(404);
     // Does not exist code  
     $redirect = $link->redirect_url;
     if ($redirect) {
@@ -28,10 +28,8 @@ Route::get('/{code}', function ($code) {
         if (!Str::startsWith($redirect, ['https://', 'http://']))  $redirect = 'https://' . $redirect;
         return Redirect::away($redirect);
     } else {
-        $file = $link->files()->first(); 
-        if (!$file) return abort(404); 
+        $file = $link->files()->first();
+        if (!$file) return abort(404);
         return Redirect::away(FileService::getStorageFullPath($file));
-
     }
 });
-

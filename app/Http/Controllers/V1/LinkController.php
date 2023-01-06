@@ -6,12 +6,9 @@ use App\Http\Resources\V1\Link\LinkResource;
 use App\Http\Requests\Link\LinkRequest;
 use App\Http\Controllers\ApiController;
 use App\Http\Services\Rezix_File\FileService;
-use App\Http\Services\Rezix_File\ImageService;
-use App\Http\Services\Rezix_FTP\FTPService;
+use App\Http\Services\Rezix_File\ImageService; 
 use App\Models\Base\File;
 use App\Models\Link;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class LinkController extends ApiController
 {
@@ -23,6 +20,7 @@ class LinkController extends ApiController
 
     public function uploader(LinkRequest $request)
     {
+        $storage = 'FTP'; //  Local
         $reqFile = $request->file;
         $imageTypes = ['jpg', 'png', 'bmp', 'svg'];
         // generate shortcut
@@ -31,8 +29,8 @@ class LinkController extends ApiController
         $file = File::createFile($reqFile, $link);
         // check type file
         if (in_array($reqFile->extension(), $imageTypes)) {
-            // save image in storage
-            $is_save = ImageService::save($file, $reqFile);
+            // save image in storage  
+            $is_save = ImageService::save($file, $reqFile, $storage);  
             if ($is_save) return $this->successResponse(new LinkResource($link), 'image saved');
             return $this->errorResponse('image is not saved');
         } else {
@@ -55,14 +53,5 @@ class LinkController extends ApiController
         if (!$redirect) return $this->errorResponse('not found', 404);
         // redirect to original url
         return $this->successResponse(new LinkResource($redirect), 'show link details');
-    }
-
-    public function testt(Request $request)
-    {
-        $config = Config::get('ftp.connections.connection1');
-        $ftp = new FTPService($config);
-        $fileName =  $request->file->getClientOriginalName();
-        $path = 'test' . DIRECTORY_SEPARATOR . 'image' . DIRECTORY_SEPARATOR . $fileName;
-        return $ftp->uploadFile($request->file, $path);
-    }
+    } 
 }

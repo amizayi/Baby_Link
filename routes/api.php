@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\Base\StatusController as V1TStatusController;
-use App\Http\Controllers\V1\Base\TypeController as V1TypeController;
+use App\Http\Controllers\V1\Base\TypeController as V1TypeController; 
 use App\Http\Controllers\V1\LinkController as V1LinkController; 
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +25,6 @@ Route::prefix('/v1')->group(function () {
         Route::post('/shortener', 'shortener');
         Route::post('/uploader', 'uploader');
         Route::get('/{code}', 'show');
-    });
-});
-Route::post('/test/ftp',[V1LinkController::class,'testt']);
+    }); 
+}); 
+ 
